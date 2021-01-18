@@ -13,7 +13,7 @@ either the emulated USB interface does not fit the driver's needs or you will
 need a more complex firmware running on the Raspberry Pi Zero to be able 
 to respond to the Host's requests. 
 
-# Purpose
+## Purpose
 
 The main goal behind this program is to offer a solution for 
 transferring data from devices without any interface except the
@@ -41,7 +41,7 @@ The Pi might receive the report and:
  - ... 
  
 
-# Requirements
+## Requirements
  - Raspberry Pi Zero W
     - Alternatives: Raspberry Pi Zero, Raspberry Pi 4 Model B
  - USB Micro B to USB A Cable
@@ -53,7 +53,7 @@ The Pi might receive the report and:
  Note that to use the Raspberry Pi 4 Model B different power and 
  USB cables might be needed. 
  
-# Installation
+## Installation
  1. Install Raspberry Pi OS onto the Micro SD card 
     (Latest tested version: Linux raspberrypi 5.4.83+ armv6l) 
  2. Change settings in files on Mirco SD card 
@@ -88,7 +88,7 @@ The Pi might receive the report and:
     - If your status differs from the one above, use `emulatedprinter -needed_option` to set the correct status
     - Unload modules using (`make stop`) or (`rmmod g_printer` and `rmmod usb_f_printer`)
  
-# Emulate the Printer
+## Emulate the Printer
   Before you can start emulating your printer you will need to find out
   some information about your exact printer model. This includes the manufacturer,
   the model and the IEEE1284/PNP string. These are the minimum requirements  for Microsoft
@@ -120,15 +120,16 @@ The Pi might receive the report and:
   If you choose to emulate a different printer than your own, you might run into problems
   getting the information about your exact device. Luckily there is an awesome website
   called [www.openprinting.org](http://www.openprinting.org/foomatic-db/db/source/printer/) where you will find
-  almost 4000 (!) printers listed together with their IEEE1284 string. Once you have a printer 
+  ~ 4000 (!) printers listed together with their IEEE1284 string. You can find a aggregated list 
+  of these PNP string [here](doc/pnp_strings.txt). Once you have a printer 
   that fits your needs and has a pnp string, you can simply use the same online list as before to get
   the vendorID and productID. As before load the g_printer module and confirm that 
-  your PC recognizes  the Pi correctly as the printer you selected.
+  your PC recognizes  the Pi correctly as the printer you selected.  
 
   Now simply call `emulatedprinter -read_data` to capture all print jobs and
   save them to the folder you specified earlier. 
       
-# Acknowledgements    
+## Acknowledgements    
 This program is made possible due to the work of David Brownell and 
 Craig W. Nadler who added the USB printer gadget to the 
 Linux USB Gadget API. 
