@@ -1,3 +1,8 @@
+SOURCE http://www.openprinting.org/foomatic-db/db/source/printer/
+Filtered and aggregated by Raspebrry (Jan 2021)
+This list contains the filename as stored on www.openprinting.org/foomatic-db/db/source/printer/
+and the XML-tag <ieee1284></ieee1284> separated by '|'
+
 Brother-DCP-7025.xml|MFG:Brother;MDL:Brother DCP-7025;
 Brother-DCP-7030.xml|MFG:Brother;CMD:PJL,HBP;MDL:DCP-7030;CLS:PRINTER;
 Brother-DCP-7045N.xml|MFG:Brother;MDL:Brother DCP-7045N;
