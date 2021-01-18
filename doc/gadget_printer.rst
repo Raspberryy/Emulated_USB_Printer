@@ -1,4 +1,5 @@
-﻿===============================
+SOURCE https://www.kernel.org/doc/Documentation/usb/gadget_printer.rst
+===============================
 Linux USB Printer Gadget Driver
 ===============================
 
