@@ -16,27 +16,27 @@
    * along with this program.  If not, see <https://www.gnu.org/licenses/>.
    *
    * ------------------------------------------------------------------------
-   * 
-   * This program is contains some examples by Craig W. Nadler (2007): 
+   *
+   * This program is contains some examples by Craig W. Nadler (2007):
    * https://www.kernel.org/doc/Documentation/usb/gadget_printer.rst
-   *   
+   *
    * ------------------------------------------------------------------------
    *
    * The Emulated USB Printer is based on the Linux USB Gadget API.
-   * Using the USB Gadget API the g_printer module will create the device file 
+   * Using the USB Gadget API the g_printer module will create the device file
    * /dev/g_printer which is used to read data from the host and set or get
-   * the current printer status. 
-   *    
-   * See Makefile for more details on how to load or unload the 
-   * g_printer driver. 
+   * the current printer status.
+   *
+   * See Makefile for more details on how to load or unload the
+   * g_printer driver.
    *
    * Instead of writing received print jobs to stdout we store all print jobs
    * in FILE_OUTPUT_PATH as .pcl files (Regardless of the PDL). We recommend
-   * using GhostPDL to process the received print jobs. Note that GhostPDL 
+   * using GhostPDL to process the received print jobs. Note that GhostPDL
    * might need to be installed separately from Ghostscript.
-   *   
+   *
    */
-  
+
   #include <stdio.h>
   #include <stdlib.h>
   #include <fcntl.h>
@@ -67,16 +67,15 @@
    * with GPDL_SDEVICE_METHOD to convert printjob.
    * Saves output in FILE_OUTPUT_PATH.
    */
-   
+
   static void
   gpdl_parse_printjob(const char* printjob, const char* outp_filename)
   {
 	// Check if GPDL is usable
-	if(GPDL_BIN_FILE == "" || GPDL_SDEVICE_METHOD = ""
+	if(strcmp(GPDL_BIN_FILE, "") == 0 || strcmp(GPDL_SDEVICE_METHOD, "") == 0
 		|| printjob == NULL || outp_filename == NULL)
-		return -1;
-	  
-	  
+		return;
+
 	// Prepare gpdl
 	char sys_cmd[1024];
 	sprintf(sys_cmd,
@@ -107,7 +106,7 @@
   	}
 
 	if(!error)
-		printf("[*] FINSIEHD\tNew printout %s.%s\n", 
+		printf("[*] FINSIEHD\tNew printout %s.%s\n",
 			outp_filename, GPDL_FILE_EXTENSION);
 
 	// Kill child process
@@ -115,22 +114,22 @@
 	_exit(0);
   }
 
-  
+
   // ******************************
   // ***   Print job reading	***
   // ******************************
-  
+
   /*
    * 'read_printer_data()' - Polls PRINTER_FILE
-   * to read and write print jobs to FILE_OUTPUT_PATH. 
+   * to read and write print jobs to FILE_OUTPUT_PATH.
    * Uses fork() to enable async print job processing
    *
-   * When receiving a print job: 
+   * When receiving a print job:
    * 	Write data to FILE cur_job.
    * 	If no new data arrives for at least one second
-   * 	Closes cur_job and creates new file. 
+   * 	Closes cur_job and creates new file.
    */
-  
+
   static int
   read_printer_data()
   {
@@ -159,7 +158,7 @@
 		int bytes_read;
 		int retval;
 
-		// Create new file 
+		// Create new file
 		if(rec == -1) {
 			time_t     now;
     			struct tm  ts;
@@ -217,13 +216,13 @@
 	return 0;
   }
 
-  
+
   // **************************
-  // ***  Printer Status 	***
+  // ***  Printer Status    ***
   // **************************
-  
+
   /*
-   * 'get_printer_status()' - Gets Bits as 
+   * 'get_printer_status()' - Gets Bits as
    * defined in g_printer.h to get
    * current printer status as shown to the host
    */
@@ -255,13 +254,13 @@
 	return(retval);
   }
 
-  
+
   /*
-   * 'set_printer_status()' - Sets Bits as 
+   * 'set_printer_status()' - Sets Bits as
    * defined in g_printer.h to set
    * current printer status shown to the host
    */
-   
+
   static int
   set_printer_status(unsigned char buf, int clear_printer_status_bit)
   {
@@ -301,12 +300,12 @@
 	return 0;
   }
 
-  
+
   /*
    * 'display_printer_status()' - Prints
    * current printer status as shown to the host
    */
-  
+
   int
   display_printer_status()
   {
@@ -329,7 +328,7 @@
 	} else {
 		printf("\tPaper is Loaded\n");
 	}
-	if (printer_status & PRINTER_NOT_Error) {
+	if (printer_status & PRINTER_NOT_ERROR) {
 		printf("\tPrinter OK\n");
 	} else {
 		printf("\tPrinter Error\n");
@@ -370,8 +369,8 @@
 
 	exit(1);
   }
-  
-  
+
+
   int
   main(int  argc, char *argv[])
   {
@@ -416,12 +415,12 @@
 			}
 
 		} else if (!strcmp(argv[i], "-error")) {
-			if (set_printer_status(PRINTER_NOT_Error, 1)) {
+			if (set_printer_status(PRINTER_NOT_ERROR, 1)) {
 				retval = 1;
 			}
 
 		} else if (!strcmp(argv[i], "-no_error")) {
-			if (set_printer_status(PRINTER_NOT_Error, 0)) {
+			if (set_printer_status(PRINTER_NOT_ERROR, 0)) {
 				retval = 1;
 			}
 
