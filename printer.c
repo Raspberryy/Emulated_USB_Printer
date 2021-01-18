@@ -14,7 +14,7 @@
   #define GPDL_SDEVICE_METHOD		"pdfwrite"
   #define GPDL_FILE_EXTENSION		"pdf"
 
-  const char* FILE_OUTPUT_PATH = "../printouts/";
+  const char* FILE_OUTPUT_PATH = "printjobs/";
 
   static int display_printer_status();
 
