@@ -158,31 +158,32 @@
 		int bytes_read;
 		int retval;
 
-		// Create new file
-		if(rec == -1) {
-			time_t     now;
-    			struct tm  ts;
-
-    			// Build file name
-    			time(&now);
-			ts = *localtime(&now);
-    			strftime(filename, sizeof(filename), "%Y-%m-%d-%H-%M-%S", &ts);
-			sprintf(pjob_outp_file,"%s%s.pcl", FILE_OUTPUT_PATH, filename);
-
-			// Create PCL file
-			cur_job = fopen(pjob_outp_file, "w+");
-			if(cur_job == NULL){
-				printf("[!] Error\tOpening %s. Exiting\n", pjob_outp_file);
-				return -1;
-			}
-
-			rec = 0;
-		}
-
 		/* Wait for up to 1 second for data. */
 		retval = poll(fd, 1, 1000);
 
 		if (retval && (fd[0].revents & POLLRDNORM)) {
+
+			/* Data received - Create new file if needed */
+			if(rec == -1) {
+                        	time_t     now;
+                        	struct tm  ts;
+
+                        	// Build file name
+                        	time(&now);
+                        	ts = *localtime(&now);
+                        	strftime(filename, sizeof(filename), "%Y-%m-%d-%H-%M-%S", &ts);
+                        	sprintf(pjob_outp_file,"%s%s.pcl", FILE_OUTPUT_PATH, filename);
+
+                        	// Create PCL file
+                        	cur_job = fopen(pjob_outp_file, "w+");
+                        	if(cur_job == NULL){
+                                	printf("[!] Error\tOpening %s. Exiting\n", pjob_outp_file);
+                                	return -1;
+                        	}
+
+                        	rec = 0;
+			}
+
 
 			/* Read data from printer gadget driver. */
 			bytes_read = read(fd[0].fd, buf, BUF_SIZE);
