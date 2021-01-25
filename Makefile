@@ -29,5 +29,4 @@ startXeroxPhaser4400:
 startSamsungML6060:
 	modprobe g_printer idVendor=0x04E8 idProduct=0x3008 bcdDevice=0x0100 iManufacturer="" iProduct="" iSerialNumber="" iPNPstring="MFG:Samsung;CMD:PCL5E,PCL6;MDL:ML-6060;CLS:PRINTER;CMT:EmulatedPrinter;"
 startTest:
-	modprobe g_printer idVendor=0x04F9 idProduct=0x0027 bcdDevice=0x0100 iManufacturer="" iProduct="" iSerialNumber="" iPNPstring=""
-
+	modprobe g_printer idVendor=0x05CA idProduct=0x0403 bcdDevice=0x0100 iManufacturer="" iProduct="" iSerialNumber="" iPNPstring="MFG:RICOH;MDL:Aficio 1224C;CMD:POSTSCRIPT;"
