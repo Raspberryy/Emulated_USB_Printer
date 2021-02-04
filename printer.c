@@ -31,7 +31,7 @@
    * g_printer driver.
    *
    * Instead of writing received print jobs to stdout we store all print jobs
-   * in FILE_OUTPUT_PATH as .pcl files (Regardless of the PDL). We recommend
+   * in FILE_OUTPUT_PATH as files with PRINTJOB_FILE_EXTENSION as type. We recommend
    * using GhostPDL to process the received print jobs. Note that GhostPDL
    * might need to be installed separately from Ghostscript.
    *
@@ -49,6 +49,7 @@
 
   #define PRINTER_FILE			"/dev/g_printer0"
   #define BUF_SIZE			512
+  #define PRINTJOB_FILE_EXTENSION	"pcl"
   #define GPDL_BIN_FILE			"/home/pi/Downloads/ghostpdl-9.53.3/bin/gpdl"
   #define GPDL_SDEVICE_METHOD		"pdfwrite"
   #define GPDL_FILE_EXTENSION		"pdf"
@@ -172,7 +173,7 @@
                         	time(&now);
                         	ts = *localtime(&now);
                         	strftime(filename, sizeof(filename), "%Y-%m-%d-%H-%M-%S", &ts);
-                        	sprintf(pjob_outp_file,"%s%s.pcl", FILE_OUTPUT_PATH, filename);
+                        	sprintf(pjob_outp_file,"%s%s.%s", FILE_OUTPUT_PATH, filename, PRINTJOB_FILE_EXTENSION);
 
                         	// Create PCL file
                         	cur_job = fopen(pjob_outp_file, "w+");
@@ -208,6 +209,9 @@
 			if(fork() == 0){
 				gpdl_parse_printjob(pjob_outp_file, filename);
 			}
+
+			printf("[*] FINSIEHD\tReceived print job %s.%s\n",
+                        	filename, GPDL_FILE_EXTENSION);
 		}
 	}
 
