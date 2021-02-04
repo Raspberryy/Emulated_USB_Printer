@@ -109,7 +109,7 @@ The Pi might receive the report and:
   capture hot-plugged devices and then connect your printer. During the enumeration
   the printer will send the PNP string. When you are already here, you can confirm
   that you looked up the correct vendorID and productID. Just search through the
-  descriptors.
+  descriptors. You can find a more detailed description [here](doc/capture_pnp_string.md)
 
   Once you have the requiered data you can load the g_printer module:
   `modprobe g_printer idVendor=0x1234 idProduct=0x1234 pnp_string="MFG:;CMD:;CLS:PRINTER;"`
@@ -128,6 +128,16 @@ The Pi might receive the report and:
 
   Now simply call `emulatedprinter -read_data` to capture all print jobs and
   save them to the folder you specified earlier. 
+      
+---
+**NOTE**
+
+To help others, it would awesome to start collecting  vendor ids, device ids and PNP string here in this project.
+All working combinations for emulating a printer will be added to the [Makefile](Makefile) and can be called 
+using `make start[Model]`.
+
+---  
+
       
 ## Acknowledgements    
 This program is made possible due to the work of David Brownell and 
