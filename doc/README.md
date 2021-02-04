@@ -1,3 +1,7 @@
+####  capture_pnp_string.md  [<sub>open</sub>](capture_pnp_string.md )
+Description on how to capture the PNP string of your own printer using
+a windows machine and *USBlyzer*. Linux users might need to use different tools!
+
 ####  gadget_printer.rst [<sub>open</sub>](gadget_printer.rst)
 Copy of original example for using g_printer file descriptor by Craig W. Nadler (2007). [Source](https://www.kernel.org/doc/Documentation/usb/gadget_printer.rst)
 
