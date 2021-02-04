@@ -211,7 +211,7 @@
 			}
 
 			printf("[*] FINSIEHD\tReceived print job %s.%s\n",
-                        	filename, GPDL_FILE_EXTENSION);
+                        	filename, PRINTJOB_FILE_EXTENSION);
 		}
 	}
 
