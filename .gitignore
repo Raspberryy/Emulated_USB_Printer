@@ -1,3 +1,5 @@
 printjobs/*.pdf
 printjobs/*.pcl
 emulatedprinter
+test/*
+read

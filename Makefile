@@ -5,6 +5,10 @@ all:
 build:
 	gcc -Wall printer.c -o emulatedprinter
 
+build_simple:
+	gcc -Wall printer_minimal.c -o read
+
+
 clean:
 	rm -f printjobs/*.pcl
 	rm -f printjobs/*.pdf

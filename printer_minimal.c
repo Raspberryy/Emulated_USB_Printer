@@ -25,6 +25,7 @@ int main(int  argc, char *argv[])
 	fd[0].events = POLLIN | POLLRDNORM;
 	int rec = -1;
 	char filename[100];
+	char file_path[256];
 	FILE* cur_job;
 
 	while (1) {
@@ -46,19 +47,19 @@ int main(int  argc, char *argv[])
 				time(&now);
 				ts = *localtime(&now);
 				strftime(filename, sizeof(filename), "%Y-%m-%d-%H-%M-%S", &ts);
-				sprintf(pjob_outp_file,"%s%s.%s", "printjobs/", filename, PRINTJOB_FILE_EXTENSION);
+				snprintf(file_path, sizeof(file_path), "%s.pcl", filename);
 
 				// Create PCL file
-				cur_job = fopen(pjob_outp_file, "w+");
+				cur_job = fopen(file_path, "w");
 				if(cur_job == NULL){
-						printf("[!] Error\tOpening %s. Exiting\n", pjob_outp_file);
+						printf("[!] Error\tOpening %s. Exiting\n", file_path);
 						return -1;
 				}
 				rec = 0;
 			}
 
 			/* Read data from printer gadget driver. */
-			bytes_read = read(fd[0].fd, buf, BUF_SIZE);
+			bytes_read = read(fd[0].fd, buf, 512);
 
 			if (bytes_read < 0) {
 				printf("[!] Error\t%d reading from %s\n",
@@ -74,7 +75,7 @@ int main(int  argc, char *argv[])
 			/* Save printjob */
 			rec = -1;
 			fclose(cur_job);
-			printf("[*] RECEIVED\tPrint job %s.%s\n",filename, PRINTJOB_FILE_EXTENSION);
+			printf("[*] RECEIVED\tPrint job %s\n", file_path);
 		}
 	}
 
