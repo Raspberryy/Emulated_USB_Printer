@@ -28,5 +28,5 @@ startXeroxPhaser4400:
 	modprobe g_printer idVendor=0x0924 idProduct=0x3CE8 bcdDevice=0x0100 iManufacturer="" iProduct="" iSerialNumber="" iPNPstring="MFG:Xerox;CMD:Adobe PostScript 3, PCL, PJL;MDL:Phaser 4400B;CLS:Printer;DES:Xerox Phaser 4400 Laser Printer, Page Printer, PostScript 3, Letter/A4 Size;"
 startSamsungML6060:
 	modprobe g_printer idVendor=0x04E8 idProduct=0x3008 bcdDevice=0x0100 iManufacturer="" iProduct="" iSerialNumber="" iPNPstring="MFG:Samsung;CMD:PCL5E,PCL6;MDL:ML-6060;CLS:PRINTER;CMT:EmulatedPrinter;"
-startTest:
+startRicohAficio1224C:
 	modprobe g_printer idVendor=0x05CA idProduct=0x0403 bcdDevice=0x0100 iManufacturer="" iProduct="" iSerialNumber="" iPNPstring="MFG:RICOH;MDL:Aficio 1224C;CMD:POSTSCRIPT;"
