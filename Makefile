@@ -40,3 +40,5 @@ startKyoceraFS1020D:
 	modprobe g_printer idVendor=0x0482 idProduct=0x0015 bcdDevice=0x0100 iManufacturer="" iProduct="" iSerialNumber="" iPNPstring="MFG:Kyocera;MDL:Kyocera FS-1030D;CMD:POSTSCRIPT,PJL,PCL;  "
 startRicohAficioSP35010SF:
 	modprobe g_printer idVendor=0x05CA idProduct=0x0437 bcdDevice=0x0100 iManufacturer="" iProduct="" iSerialNumber="" iPNPstring="MFG:RICOH;MDL:Aficio SP 3510SF;CMD:POSTSCRIPT;  "
+startSonyUPDR80MD:
+	modprobe g_printer idVendor=0x054C idProduct=0x3C3 bcdDevice=0x0108 iManufacturer="SONY" iProduct="UP-DR80MD" iSerialNumber="00000000" iPNPstring="MFG:SONY;MDL:UP-DR80MD;DES:Sony UP-DR80MD;CMD:SPJL-DS,SPDL-DS;CLS:PRINTER;  "
